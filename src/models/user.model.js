@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     image: {
-        type: String, // Store file path or URL
+        type: String, 
         required: true
     },
     createdAt: {

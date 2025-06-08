@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user.model');
 
-exports.loginUser = async (req, res) => {
+const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -40,3 +40,5 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ message: 'Login failed', error });
     }
 };
+
+module.exports = { loginUser };
