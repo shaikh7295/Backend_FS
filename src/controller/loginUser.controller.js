@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user.model');
 
 const loginUser = async (req, res) => {
+    let isMatch
     try {
         const { email, password } = req.body;
 
@@ -11,14 +12,14 @@ const loginUser = async (req, res) => {
             return res.status(400).json({ message: 'Invalid email or password.' });
         }
 
-        const isMatch = await bcrypt.compare(password, user.password);
+        isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid email or password.' });
         }
 
         const token = jwt.sign(
             { id: user._id, email: user.email },
-            process.env.MY_SECRET, 
+            process.env.MY_SECRET || '123456789faisal',
             { expiresIn: '1h' }
         );
 
