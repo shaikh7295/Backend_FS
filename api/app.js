@@ -9,11 +9,11 @@ const cors = require('cors');
 
 const path = require('path');
  
-require('./src/config/db.config');
-require('./src/routes/router');
+require('../src/config/db.config');
+require('../src/routes/router');
 app.use(cors());
 app.use(bodyParser.json());
-app.use('', require('./src/routes/router'));
+app.use('', require('../src/routes/router'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.listen(PORT, () => {
